@@ -1,25 +1,26 @@
-function swap(arr1, arr2) {
-    let temp = arr1;
-    arr1 = arr2;
-    arr2 = temp;
+function swap(arr, i) {
+  const a = arr[i];
+  arr[i] = arr[i + 1];
+  arr[i + 1] = a;
 }
-function comparison() {
-  if(arr[i] > arr[i + 1]) {
-      return false;
-  }  
- return true;
+//check to see if they are already ordered
+function comparison(arr, i) {
+  if (i === arr.length - 1) return true;
+  return arr[i] < arr[i + 1];
 }
 
 function bubbleSort(arr) {
- /* your code here */
-    let myArr = [];
-    for (var i = 0; i < arr.length - 1; i++){
-        if (!comparison(arr[i])){
-            console.log('BEFORE:', arr)
-            swap(arr[i], arr[i+1]);
-            console.log('AFTER:', arr);
-        }
-        
+  let sorted = false;
+  //passes
+  for (let end = arr.length; end > 0 && !sorted; end--) {
+    sorted = true;
+    //bubbling
+    for (let i = 0; i < end; i++) {
+      if (!comparison(arr, i)) {
+        swap(arr, i);
+        sorted = false;
+      }
     }
-    return myArr;
+  }
+  return arr;
 }
